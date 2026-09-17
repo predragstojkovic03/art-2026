@@ -1,0 +1,23 @@
+{
+  "name": "art-2026",
+  "version": "1.0.0",
+  "description": "Aplikacija za Kulturnu Manifestaciju Art 2026",
+  "private": true,
+  "workspaces": ["apps/*", "shared"],
+  "scripts": {
+    "dev:server": "npm run start:dev --workspace=apps/server",
+    "dev:web": "npm run dev --workspace=apps/web -- --host 0.0.0.0",
+    "watch:shared": "npm run build:watch --workspace=shared",
+    "start:dev": "concurrently \"npm run watch:shared\" \"npm run dev:server\" \"npm run dev:web\" -n shared,server,web -c yellow,green,blue -p \"[{name}]\"",
+    "build:shared": "npm run build --workspace=shared",
+    "build:web": "npm run build --workspace=apps/web",
+    "build:server": "npm run build --workspace=apps/server",
+    "build": "npm run build:shared && npm run build:server && npm run build:web",
+    "docs:pdf": "node scripts/generate-pdf.mjs"
+  },
+  "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^11.17.0",
+    "concurrently": "^9.1.2",
+    "md-to-pdf": "^5.2.4"
+  }
+}
