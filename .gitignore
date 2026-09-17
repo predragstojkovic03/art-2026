@@ -4,7 +4,6 @@ build/
 coverage/
 .DS_Store
 *.log
-.vscode/
 .idea/
 *.pdf
 .env
